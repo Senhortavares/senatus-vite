@@ -7,7 +7,8 @@ import Contact from "./pages/contact/Contact.jsx";
 import Ouvidoria from "./pages/Ouvidoria/Ouvidoria.jsx";
 
 import NotFound from "./pages/notFound/NotFound.jsx";
-import Plans from "./pages/formulario/Plans.jsx";
+import Plans from "./pages/Formulario/plans.jsx";
+
 import Gallery from "./pages/gallery/Gallery.jsx";
 
 
