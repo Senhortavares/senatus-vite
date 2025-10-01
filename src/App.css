@@ -1,0 +1,197 @@
+/* ==============================
+   Tipos clássicos: títulos com Cinzel, texto com Merriweather
+============================== */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Merriweather:wght@400;700&display=swap');
+
+:root {
+  /* Paleta SENATUS (dourado + azul noite) */
+  --color-bg: #091423;            /* fundo geral azul noite */
+  --color-bg-alt: #0d1d33;        /* cards/seções */
+  --color-panel: #0f223d;         /* painéis */
+  --color-text: #f1f2f4;          /* texto principal */
+  --color-muted: #c9cdd6;
+
+  --gold: #c9a227;               /* dourado principal */
+  --gold-2: #e0c15a;             /* dourado claro */
+  --blue: #173a6a;               /* azul destaque */
+  --blue-2: #1d4ed8;             /* azul ativo/hover */
+
+  --success: #22c55e;
+  --danger: #e53935;
+
+  --radius: 14px;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --shadow-soft: 0 6px 18px rgba(0,0,0,.25);
+  --container: 1200px;
+  --transition: all .3s ease;
+
+  /* grid responsivo automático */
+  --col-min: 240px;
+}
+
+/* ==============================
+   Reset básico
+============================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Merriweather', serif;
+  color: var(--color-text);
+  background:
+    radial-gradient(1200px 600px at 0% 0%, rgba(255,255,255,.02), transparent 60%),
+    linear-gradient(180deg, #071020, #091423 30%, #0a1830);
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+
+a {
+  color: var(--gold);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--gold-2);
+}
+
+/* ==============================
+   Tipografia
+============================== */
+h1, h2, h3, h4 {
+  font-family: 'Cinzel', serif;
+  color: var(--gold);
+  margin: 0 0 .6rem;
+  line-height: 1.15;
+}
+
+/* ==============================
+   Container
+============================== */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* ==============================
+   Botões
+============================== */
+.btn {
+  display: inline-block;
+  padding: .85rem 1.4rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-2));
+  color: #131313;
+  font-weight: 700;
+  letter-spacing: .3px;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition);
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(25deg) translate(-200%, 0);
+  transition: transform 0.6s ease;
+}
+
+.btn:hover::after {
+  transform: rotate(25deg) translate(200%, 0);
+}
+
+.btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  filter: brightness(1.07);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn.lg {
+  padding: 1rem 1.8rem;
+  font-size: 1.05rem;
+}
+
+/* ==============================
+   Cards
+============================== */
+.card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(6px);
+  padding: 1.5rem;
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,.15);
+}
+
+/* ==============================
+   Seções
+============================== */
+section {
+  padding: 3rem 1rem;
+}
+
+/* ==============================
+   Utilitários
+============================== */
+.hidden {
+  display: none !important;
+}
+
+/* ==============================
+   Responsividade
+============================== */
+@media (max-width: 1024px) {
+  section {
+    padding: 2.5rem 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+  }
+
+  h2 {
+    font-size: clamp(1.4rem, 4.5vw, 1.9rem);
+  }
+
+  .btn.lg {
+    width: 100%;
+    text-align: center;
+  }
+
+  .card {
+    padding: 1.2rem;
+  }
+}

@@ -1,0 +1,47 @@
+/* ====== FAQ Section ====== */
+.faqs {
+  padding: 4rem 1rem;
+  background: var(--color-bg-alt);
+}
+
+.faqs__container {
+  max-width: var(--container);
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Título da seção */
+.faqs h2 {
+  font-family: var(--font-title);
+  color: var(--gold);
+  margin-bottom: 2rem;
+}
+
+/* Wrapper das perguntas */
+.faqs__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza os cards */
+  gap: 1rem;
+}
+
+/* FAQ individual (já estilizado no FAQ.jsx, mas reforçando responsividade) */
+.faq {
+  width: 100%;
+  max-width: 600px;
+}
+
+/* ====== Responsividade ====== */
+@media (max-width: 768px) {
+  .faqs {
+    padding: 2.5rem 1rem;
+  }
+
+  .faqs__wrapper {
+    gap: 0.8rem;
+  }
+
+  .faq {
+    max-width: 100%; /* ocupa quase toda a tela no mobile */
+  }
+}

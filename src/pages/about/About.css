@@ -1,0 +1,62 @@
+.about {
+  padding: 7rem 1rem 3rem; /* compensa navbar fixa */
+  display: flex;
+  justify-content: center;
+  background: #0a0f1c; /* fundo escuro atrás */
+}
+
+.about-container {
+  width: 100%;
+  max-width: 900px;
+  padding: 4rem 2rem;
+  position: relative;
+  text-align: center;
+
+  /* imagem do pergaminho */
+  /* background: url('../../../public/lider.png') no-repeat center/contain; */
+  background-size: 100% 100%;
+  min-height: 80vh;
+  color: #ffffff;
+  font-family: 'Merriweather', serif;
+  line-height: 1.8;
+}
+
+/* título */
+.about-title {
+  font-size: 2rem;
+  color: #7a5c00;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+/* parágrafos */
+.about p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+
+/* classe ativa quando aparece na tela */
+.about p.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .about-container {
+    padding: 2rem 1rem;
+    background-size: cover;
+  }
+
+  .about-title {
+    font-size: 1.6rem;
+  }
+
+  .about p {
+    font-size: 1rem;
+  }
+}

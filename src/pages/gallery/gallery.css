@@ -1,0 +1,117 @@
+.gallery {
+  padding: 6rem 1rem 2rem; /* 6rem em cima para "empurrar" abaixo do menu */
+  text-align: center;
+  background: linear-gradient(180deg, #0b1220, #0f1a2d);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+}
+
+.gallery__title {
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  font-weight: 700;
+  color: #ffd700;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 15px #ffd700aa;
+  letter-spacing: 1.5px;
+}
+
+/* Cards principais */
+.gallery__images {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+  max-width: 400px; /* limite para mobile */
+  margin: 0 auto 2rem;
+}
+
+.gallery__card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  animation: float 4s ease-in-out infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+.gallery__card img {
+  width: 90%;
+  max-width: 200px;
+  border-radius: 10px;
+  margin-bottom: 0.8rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+/* Botões menores e responsivos */
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #ffd700, #ffb700);
+  color: #111;
+  padding: 0.6rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease;
+  width: 85%;          /* ocupa menos no celular */
+  max-width: 260px;
+}
+
+.download-btn:hover {
+  background: linear-gradient(135deg, #ffcc00, #ffaa00);
+  transform: scale(1.05);
+}
+
+/* Instruções */
+.gallery__steps {
+  color: #ddd;
+  text-align: left;
+  max-width: 380px;
+  margin: 0 auto;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
+
+.gallery__steps h3 {
+  color: #ffd700;
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+}
+
+.gallery__steps ol {
+  padding-left: 1.2rem;
+}
+
+.gallery__steps li {
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+}
+
+/* Responsividade extra */
+@media (min-width: 768px) {
+  .gallery__images {
+    flex-direction: row;
+    justify-content: center;
+    max-width: 700px;
+  }
+  .gallery__card {
+    width: 45%;
+  }
+}

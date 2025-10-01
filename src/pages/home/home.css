@@ -1,0 +1,120 @@
+.main__header {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #0a0f1c, #0f172a);
+}
+
+.main__header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  width: 100%;
+  gap: 3rem;
+}
+
+.main__header-content {
+  flex: 1;
+  max-width: 600px;
+}
+
+.main__header-content h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #d4af37; /* dourado romano */
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+.main__header-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+}
+
+/* ===== Botão com efeito ===== */
+.btn.lg {
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #d4af37, #251f0c);
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+.btn.lg:hover {
+  background: linear-gradient(135deg, #ffe066, #c9a100);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+}
+
+.btn.lg:active {
+  transform: scale(0.97);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+}
+
+/* Imagem do lado direito */
+.main__header-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main__header-image img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+/* ===== Responsivo ===== */
+@media (max-width: 768px) {
+  .main__header-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .main__header-content {
+    max-width: 100%;
+  }
+
+  .main__header-content h1 {
+    font-size: 2rem;
+  }
+
+  .main__header-content p {
+    font-size: 1rem;
+  }
+
+  .main__header-image img {
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main__header-content h1 {
+    font-size: 1.6rem;
+  }
+
+  .main__header-content p {
+    font-size: 0.9rem;
+  }
+
+  .btn.lg {
+    font-size: 0.9rem;
+    padding: 0.8rem 1.2rem;
+  }
+}
