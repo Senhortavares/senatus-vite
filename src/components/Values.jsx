@@ -2,7 +2,6 @@ import SectionHead from "./SectionHead.jsx";
 import { values } from "../data.jsx";
 import Card from "../UI/Card";
 import "./values.css";
-import img from '../../public/filos.png';
 
 const Values = () => {
   return (

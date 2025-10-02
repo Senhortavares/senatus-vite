@@ -42,7 +42,7 @@ export const faqs = [
   { id: 3, question: 'Existe idade mínima?', answer: 'Sim, 15 anos.' },
 ];
 
-// Depoimentos
+// Depoimentos e noticias que cada lider vai passar 
 export const testimonials = [
   { id: 1, name: 'Anderson', job: 'Líder Supremo', quote: 'Unidade, justiça e luz.', avatar: '/lider1.png' },
   { id: 2, name: 'Arnaud', job: 'Grão-Mestre', quote: 'Ordem, respeito e fraternidade.', avatar: '/gra2.png' },

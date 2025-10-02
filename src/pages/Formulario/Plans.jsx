@@ -1,182 +1,106 @@
-import './plans.css';
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import "./chatForm.css";
 
-const Plans = () => {
-  const [formData, setFormData] = useState({
-    motivo: '', contribuicao: '', aprendizado: '', valores: '',
-    respeito: '', lealdade: '', dialogo: '', lideres: '',
-    raiva: '', convivio: '', nome: '', idade: '',
-    discord: '', celular: ''
-  });
+const ChatForm = () => {
+  const [messages, setMessages] = useState([
+    { from: "bot", text: "Olá, qual é seu nome?" }
+  ]);
+  const [step, setStep] = useState(0);
+  const [input, setInput] = useState("");
+  const [userData, setUserData] = useState({});
 
-  const [errors, setErrors] = useState({});
-  const [isValid, setIsValid] = useState(false);
-  const [feedback, setFeedback] = useState(null);
-
-  const palavrasOfensivas = [
-    "burro", "idiota", "otario", "palavrão", "merda", "vai tomar no cu", 
-    "cu", "se fuder", "minha rola", "meu pau", "desgraça", 
-    "vagabundo", "filho da puta", "sarrombado"
+  const steps = [
+    { key: "nome", text: "Seja bem-vindo ao Senatus, NOME! Qual sua idade?" },
+    { key: "idade", text: "Como você acredita que pode contribuir para a comunidade?" },
+    { key: "contribuicao", text: "O que deseja aprender e desenvolver dentro da ordem?" },
+    { key: "aprendizado", text: "Você se compromete a respeitar todos os irmãos da ordem?" },
+    { key: "respeito", text: "Diante de conflitos, você buscará o diálogo e a razão?" },
+    { 
+      key: "lideres", 
+      text: "Você respeitará os líderes, mesmo quando não concordar? (Responda: sim ou não)" 
+    },
+    { key: "discord", text: "Você tem Discord? (sim/não)" }
   ];
 
-  const validateField = (name, value) => {
-    const lower = value.toLowerCase();
-    if (value.trim() === '') return 'Este campo é obrigatório.';
-    if (palavrasOfensivas.some(p => lower.includes(p))) return 'Evite linguagem ofensiva.';
-    if (name === 'idade' && parseInt(value, 10) < 15) return 'Idade mínima é 15 anos.';
-    if (name === 'celular' && value.length < 10) return 'Número de celular inválido.';
-    return '';
-  };
+  const handleSend = () => {
+    if (!input.trim()) return;
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    const updated = { ...formData, [name]: value };
-    setFormData(updated);
+    const currentStep = steps[step];
 
-    const errorMsg = validateField(name, value);
-    const updatedErrors = { ...errors };
-    if (errorMsg) updatedErrors[name] = errorMsg;
-    else delete updatedErrors[name];
+    // Salva resposta
+    setMessages([...messages, { from: "user", text: input }]);
+    const updatedData = { ...userData, [currentStep.key]: input };
+    setUserData(updatedData);
 
-    setErrors(updatedErrors);
-    setIsValid(Object.keys(updatedErrors).length === 0);
-  };
+    // Condição especial: se for a pergunta dos líderes e ele disser "não"
+    if (currentStep.key === "lideres" && input.toLowerCase() === "não") {
+      setMessages(msgs => [
+        ...msgs,
+        { from: "bot", text: "⚠️ Infelizmente você não pode entrar no SENATUS, pois não está adequado às nossas regras." }
+      ]);
+      setInput("");
+      return; // encerra o fluxo
+    }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const finalErrors = {};
-    Object.entries(formData).forEach(([name, value]) => {
-      const error = validateField(name, value);
-      if (error) finalErrors[name] = error;
-    });
-
-    if (Object.keys(finalErrors).length > 0) {
-      setErrors(finalErrors);
-      setIsValid(false);
-      setFeedback({
-        type: "error",
-        message: "⚠️ Corrija os campos destacados antes de enviar."
-      });
+    // Se for a última pergunta (Discord)
+    if (currentStep.key === "discord") {
+      setMessages(msgs => [
+        ...msgs,
+        { from: "bot", text: "Perfeito! Clique no botão abaixo para acessar o nosso Discord:" }
+      ]);
+      setInput("");
+      setStep(step + 1);
       return;
     }
 
-    const payload = {
-      Motivo: formData.motivo,
-      Contribuicao: formData.contribuicao,
-      Aprendizado: formData.aprendizado,
-      Valores: formData.valores,
-      Respeito: formData.respeito,
-      Lealdade: formData.lealdade,
-      Dialogo: formData.dialogo,
-      Lideres: formData.lideres,
-      Raiva: formData.raiva,
-      Convivio: formData.convivio,
-      Nome: formData.nome,
-      Idade: String(formData.idade),
-      Discord: formData.discord,
-      Celular: formData.celular,
-    };
-
-    try {
-      const response = await fetch(
-        "https://api.sheetmonkey.io/form/iziVhEVnyfdt4iw9uBMHgd",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        }
-      );
-
-      const resultText = await response.text();
-      console.log("📥 Resposta do servidor:", resultText);
-
-      if (response.ok) {
-        setFeedback({
-          type: "success",
-          message: `🎉 Obrigado, ${formData.nome || "irmão"}! Suas respostas foram registradas com sucesso.`
-        });
-
-        setFormData({
-          motivo: '', contribuicao: '', aprendizado: '', valores: '',
-          respeito: '', lealdade: '', dialogo: '', lideres: '',
-          raiva: '', convivio: '', nome: '', idade: '',
-          discord: '', celular: ''
-        });
-        setErrors({});
-        setIsValid(false);
-      } else {
-        setFeedback({
-          type: "error",
-          message: `⚠️ Erro ao enviar. Status: ${response.status}. Detalhes: ${resultText}`
-        });
+    // Próxima pergunta
+    setTimeout(() => {
+      let botMsg = steps[step + 1].text;
+      if (currentStep.key === "nome") {
+        botMsg = `Seja bem-vindo ao Senatus, ${input}! Qual sua idade?`;
       }
-    } catch (err) {
-      console.error("❌ Erro de conexão:", err);
-      setFeedback({
-        type: "error",
-        message: "⚠️ Erro ao conectar com o servidor. Verifique sua internet ou o endpoint."
-      });
-    }
+      setMessages(msgs => [...msgs, { from: "bot", text: botMsg }]);
+      setStep(step + 1);
+    }, 500);
+
+    setInput("");
   };
 
-  const renderField = (label, name, type = 'textarea') => (
-    <>
-      <label>{label}</label>
-      {type === 'textarea' ? (
-        <textarea name={name} value={formData[name]} onChange={handleChange} />
-      ) : (
-        <input type={type} name={name} value={formData[name]} onChange={handleChange} />
-      )}
-      {errors[name] && <span className="error">{errors[name]}</span>}
-    </>
-  );
-
   return (
-    <section className="formulario">
-      <div className="form-container">
-        <h1 className="form-title">Formulário de Entrada - SENATUS</h1>
-        <form onSubmit={handleSubmit}>
-          {renderField("1. O que motivou você a buscar o SENATUS?", "motivo")}
-          {renderField("2. Como você acredita que pode contribuir para a comunidade?", "contribuicao")}
-          {renderField("3. O que deseja aprender e desenvolver dentro da ordem?", "aprendizado")}
-          {renderField("4. Quais valores você considera essenciais em uma irmandade?", "valores")}
-          {renderField("5. Você se compromete a respeitar todos os irmãos da ordem?", "respeito")}
-          {renderField("6. Está disposto a ser leal às doutrinas do SENATUS?", "lealdade")}
-          {renderField("7. Diante de conflitos, você buscará o diálogo e a razão?", "dialogo")}
-          {renderField("8. Você respeitará os líderes, mesmo quando não concordar?", "lideres")}
-          {renderField("9. Quando sentir raiva, você será capaz de controlar suas ações?", "raiva")}
-          {renderField("10. Está disposto a conviver em união e fraternidade, acima das diferenças?", "convivio")}
-
-          <hr />
-          <div className="explicacao">
-            <p id='PR'>
-              <strong>Por que pedimos seu Discord e número?</strong><br />
-              Para adicionar você aos grupos e servidores oficiais do SENATUS.
-            </p>
+    <section className="ouvidoria">
+      <div className="ouvidoria__chat">
+        {messages.map((msg, i) => (
+          <div key={i} className={`message ${msg.from}`}>
+            {msg.from === "bot" && <img src="/logo.ico" alt="Senatus" width="20" style={{ marginRight: "8px" }} />}
+            {msg.text}
           </div>
+        ))}
 
-          {renderField("Nome:", "nome", "text")}
-          {renderField("Idade:", "idade", "number")}
-          {renderField("Nome no Discord:", "discord", "text")}
-          {renderField("Número de celular:", "celular", "text")}
-
-          <button type="submit" disabled={!isValid}>Enviar Formulário</button>
-        </form>
+        {/* botão do discord só aparece no fim */}
+        {step >= steps.length && userData.lideres?.toLowerCase() === "sim" && (
+          <div className="final-step">
+            <a href="https://discord.gg/56DNkNry7H" target="_blank" rel="noreferrer" className="discord-btn">
+              <img src="/logo.ico" alt="Senatus" width="18" style={{ marginRight: "6px" }} />
+              Entrar no Discord
+            </a>
+          </div>
+        )}
       </div>
 
-      {/* MODAL DE FEEDBACK */}
-      {feedback && (
-        <div className="modal-overlay" onClick={() => setFeedback(null)}>
-          <div className={`modal ${feedback.type}`}>
-            <h2>{feedback.type === "success" ? "✅ Sucesso" : "❌ Erro"}</h2>
-            <p>{feedback.message}</p>
-            <button onClick={() => setFeedback(null)}>Fechar</button>
-          </div>
-        </div>
-      )}
+      <div className="ouvidoria__input">
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Digite sua resposta..."
+          onKeyDown={(e) => e.key === "Enter" && handleSend()}
+        />
+        <button onClick={handleSend}>
+          OK<img src="/logo.ico" alt="Senatus" width="20" />
+        </button>
+      </div>
     </section>
   );
 };
 
-export default Plans;
+export default ChatForm;

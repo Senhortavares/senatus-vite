@@ -3,12 +3,12 @@ import "./gallery.css";
 
 const Gallery = () => {
   const images = [
-    { src: "/civil.png", alt: "Figurinha Oficial 1" },
-    { src: "/civil2.png", alt: "Figurinha Oficial 2" }
+    { src: "/civil.png", alt: "IMG Oficial 1" },
+    { src: "/civil2.png", alt: "IMG Oficial 2" }
   ];
 
   const [displayText, setDisplayText] = useState("⟟⋏⏃⋔⟒ ⊑⟒⟟⋏");
-  const realText = "FIGURINHAS OFICIAIS DO SENATUS ⚖️";
+  const realText = "IMAGEM OFICIAIS DOS CIVIS DO SENATUS ⚖️";
 
   useEffect(() => {
     let i = 0;
@@ -32,16 +32,16 @@ const Gallery = () => {
             <div className="gallery__card" key={idx}>
               <img src={img.src} alt={img.alt} />
               <a href={img.src} download className="download-btn">
-                📥 Baixar {img.alt}
+                 Baixar {img.alt}
               </a>
             </div>
           ))}
         </div>
 
         <div className="gallery__steps">
-          <h3>Como usar no WhatsApp</h3>
+          <h3>Como fazer figurinha no WhatsApp</h3>
           <ol>
-            <li>Baixe uma das figurinhas clicando no botão acima.</li>
+            <li>Baixe uma das das imagens clicando no botão acima.</li>
             <li>Abra o WhatsApp no seu celular.</li>
             <li>Entre no grupo e adicione a figurinha.</li>
             <li>
