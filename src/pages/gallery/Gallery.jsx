@@ -3,8 +3,8 @@ import "./gallery.css";
 
 const Gallery = () => {
   const images = [
-    { src: "../../public/civil.png", alt: "Figurinha Oficial 1" },
-    { src: "../../public/civil2.png", alt: "Figurinha Oficial 2" }
+    { src: "/civil.png", alt: "Figurinha Oficial 1" },
+    { src: "/civil2.png", alt: "Figurinha Oficial 2" }
   ];
 
   const [displayText, setDisplayText] = useState("⟟⋏⏃⋔⟒ ⊑⟒⟟⋏");
@@ -14,8 +14,7 @@ const Gallery = () => {
     let i = 0;
     const interval = setInterval(() => {
       setDisplayText(
-        realText.slice(0, i + 1) +
-          "▒".repeat(realText.length - i - 1)
+        realText.slice(0, i + 1) + "▒".repeat(realText.length - i - 1)
       );
       i++;
       if (i === realText.length) clearInterval(interval);
@@ -40,13 +39,22 @@ const Gallery = () => {
         </div>
 
         <div className="gallery__steps">
-          <h3>📌 Como usar no WhatsApp</h3>
+          <h3>Como usar no WhatsApp</h3>
           <ol>
             <li>Baixe uma das figurinhas clicando no botão acima.</li>
             <li>Abra o WhatsApp no seu celular.</li>
             <li>Entre no grupo e adicione a figurinha.</li>
-            <li>Se quiser transformar em sticker, use um app como <b>Sticker Maker</b> ou similar.</li>
-            <li>Agora você faz parte oficialmente do <b>Senatus</b> ⚔️.</li>
+            <li>
+              Se quiser transformar em sticker, use um app como <b>Sticker Maker</b> ou similar.
+            </li>
+<li>
+             Agora você faz parte oficialmente do <b>Senatus</b>{" "}
+             <img 
+               src="/logo.ico" 
+               alt="Logo Senatus" 
+               style={{ width: "18px", height: "18px", verticalAlign:            "middle" }}
+  />
+           </li>
           </ol>
         </div>
       </div>

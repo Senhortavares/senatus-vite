@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import Logo from '../../public/logo.png';
 import { AiFillInstagram } from 'react-icons/ai';
-import './Footer.css';
+import './footer.css';
 
 const Footer = () => {
   return (

@@ -7,10 +7,9 @@ import Contact from "./pages/contact/Contact.jsx";
 import Ouvidoria from "./pages/Ouvidoria/Ouvidoria.jsx";
 
 import NotFound from "./pages/notFound/NotFound.jsx";
-import Plans from "./pages/Formulario/plans.jsx";
+import Plans from "../src/pages/formulario/Plans.jsx"; // <-- Ajustado aqui
 
 import Gallery from "./pages/gallery/Gallery.jsx";
-
 
 const App = () => {
   return (
@@ -21,7 +20,7 @@ const App = () => {
         <Route path="/sobre" element={<About />} />
         <Route path="/contato" element={<Contact />} />
         <Route path="/gallery" element={<Gallery />} />
-        <Route path="/plans" element={<Plans />} />
+        <Route path="/plans" element={<Plans />} /> {/* rota para Plans */}
         <Route path="/ouvidoria" element={<Ouvidoria />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

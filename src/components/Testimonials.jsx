@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import SectionHead from "./sectionHead";
+import SectionHead from "./SectionHead.jsx";
 import { ImQuotesLeft } from "react-icons/im";   // ← funciona após instalar
 import Card from "../UI/Card";
 import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from "react-icons/io";

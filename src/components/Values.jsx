@@ -1,4 +1,4 @@
-import SectionHead from "./sectionHead";
+import SectionHead from "./SectionHead.jsx";
 import { values } from "../data.jsx";
 import Card from "../UI/Card";
 import "./values.css";

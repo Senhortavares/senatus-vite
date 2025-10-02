@@ -50,7 +50,8 @@ nav {
   color: rgb(85, 65, 36);
 }
 
-.active-nav, .active-nav::after {
+.active-nav,
+.active-nav::after {
   position: relative;
 }
 
@@ -75,14 +76,16 @@ nav {
   z-index: 998;
 }
 
-/*-MOBILE- */
+/* ==============================
+   MOBILE
+============================== */
 @media screen and (max-width: 1024px) {
   .nav__toggle-boton {
     display: block;
     z-index: 1001;
   }
 
-.nav__link {
+  .nav__link {
     position: fixed;
     top: 1rem;
     right: -100%;
@@ -99,7 +102,7 @@ nav {
     z-index: 999;
   }
 
-.nav__link.show_nav {
+  .nav__link.show_nav {
     right: 1rem;
   }
 
@@ -107,13 +110,13 @@ nav {
     right: -100%;
   }
 
-.nav__link li {
+  .nav__link li {
     width: 100%;
     opacity: 0;             /* começa invisível */
     transform: translateX(20px);
   }
 
-.nav__link li a {
+  .nav__link li a {
     width: 100%;
     display: block;
     padding: 1rem;
@@ -122,20 +125,20 @@ nav {
     transition: background 0.3s;
   }
 
-.nav__link li a:hover {
+  .nav__link li a:hover {
     background: rgba(255, 255, 255, 0.1);
   }
 
-  /*---- Animações----- */
-.fade-in {
+  /* ---- Animações ---- */
+  .fade-in {
     animation: fadeInRight 0.4s forwards;
   }
 
-.fade-out {
+  .fade-out {
     animation: fadeOutRight 0.3s forwards;
   }
 
-@keyframes fadeInRight {
+  @keyframes fadeInRight {
     from {
       opacity: 0;
       transform: translateX(20px);
@@ -146,7 +149,7 @@ nav {
     }
   }
 
-@keyframes fadeOutRight {
+  @keyframes fadeOutRight {
     from {
       opacity: 1;
       transform: translateX(0);
@@ -157,7 +160,8 @@ nav {
     }
   }
 
-.active-nav, .active-nav::after {
+  .active-nav,
+  .active-nav::after {
     display: none;
   }
 }

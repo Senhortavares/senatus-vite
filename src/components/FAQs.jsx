@@ -1,5 +1,5 @@
 
-import SectionHead from './sectionHead';
+import SectionHead from './SectionHead.jsx';
 import { FaQuestion } from 'react-icons/fa';
 import { faqs } from '../data.jsx';
 import FAQ from './FAQ'; 

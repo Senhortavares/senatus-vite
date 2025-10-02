@@ -1,6 +1,6 @@
 // src/components/Programs.jsx
 import { FaCrown } from 'react-icons/fa';
-import SectionHead from './sectionHead';
+import SectionHead from './SectionHead.jsx';
 import { programs } from '../data.jsx';
 import Card from '../UI/Card';
 
