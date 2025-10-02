@@ -3,11 +3,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
 import Home from "./pages/home/Home.jsx";
 import About from "./pages/about/About.jsx";
-import Contact from "./pages/contact/Contact.jsx";
+import Notis from "./pages/noticias/Notis.jsx";
 import Ouvidoria from "./pages/Ouvidoria/Ouvidoria.jsx";
 
 import NotFound from "./pages/notFound/NotFound.jsx";
-import Plans from "../src/pages/formulario/Plans.jsx"; // <-- Ajustado aqui
+import Plans from "../src/pages/formulario/Plans.jsx"; 
 
 import Gallery from "./pages/gallery/Gallery.jsx";
 
@@ -18,9 +18,9 @@ const App = () => {
       <Routes>
         <Route index element={<Home />} />
         <Route path="/sobre" element={<About />} />
-        <Route path="/contato" element={<Contact />} />
+        <Route path="/notis" element={<Notis />} />
         <Route path="/gallery" element={<Gallery />} />
-        <Route path="/plans" element={<Plans />} /> {/* rota para Plans */}
+        <Route path="/plans" element={<Plans />} /> 
         <Route path="/ouvidoria" element={<Ouvidoria />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

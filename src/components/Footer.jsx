@@ -26,7 +26,7 @@ const Footer = () => {
             <li><Link to="/gallery">Galeria</Link></li>
             <li><Link to="/contato">Contato</Link></li>
           </ul>
-          <div className="footer__socials">
+          <div className="footer__socials">    {/*  ___redes sociais do senatus_______ */}
             <a href="https://instagram.com/senatus" target="_blank" rel="noreferrer noopener" aria-label="Instagram">
               <AiFillInstagram size={28} />
             </a>

@@ -1,5 +1,5 @@
 import React from 'react'
-import './contact.css'
+import './notis.css'
 
 const Contact = () => {
       return (

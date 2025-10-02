@@ -9,12 +9,16 @@ const filos2 = "/filos.png";
 const filos3 = "/filos.png";
 const filos4 = "/filos.png";
 
+// esses sao os links que aparece no menu tem que fazer os import aqui para pode almentar no menu
 export const links = [
   { name: 'Início', path: '/' },
-  { name: 'Sobre', path: '/sobre' },
-  { name: 'Figurinhas', path: '/gallery' },
   { name: 'Formulário', path: '/plans' },
+  { name: 'Imagens', path: '/gallery' },
+  { name: 'Notícias', path: '/notis' },
   { name: 'Ouvidoria', path: '/ouvidoria' },
+  { name: 'Sobre', path: '/sobre' },
+
+
 ];
 
 // Cards dos líderes
