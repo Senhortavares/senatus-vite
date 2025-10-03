@@ -57,7 +57,7 @@ export const testimonials = [
 
 
 
-// Avisos importantes
+// Avisos importantes+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // export const avisos = [
 //   {
 //     id: 1,
@@ -83,21 +83,23 @@ export const avisos = [
   {
     id: 1,
     title: "Aviso Importante",
-    desc: "⚠️ O sistema ficará indisponível hoje às 22h para manutenção."
+    desc: "O nosso líder supremo irá trocar as imagens do nosso grupo, então não baixem ainda ."
   },
   {
     id: 2,
-    title: "Novo Formulário",
-    desc: "📑 Já está disponível um novo formulário na aba Cadastros."
+    title: "Lideres",
+    desc: "Em breve vamos anunciar quem serão os novos líderes ."
   },
   {
     id: 3,
     title: "Atualização",
-    desc: "🔒 Segurança reforçada no login. Refaça seu acesso se necessário."
+    desc: "O jogo ainda está em desenvolvimento, mas você pode se divertir com esta versão que está rodando lá ."
   },
   {
     id: 4,
-    title: "Evento",
-    desc: "🎉 A reunião anual do Senatus será no próximo sábado às 19h."
+    title: "Reuniões",
+    desc: "As reuniões no Discord acontecem todos os dias às 22h."
   }
 ];
+
+

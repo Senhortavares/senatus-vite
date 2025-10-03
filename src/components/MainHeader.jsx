@@ -15,7 +15,7 @@ const MainHeader = () => {
         </div>
 
         <div className="main__header-image">
-          <img src="./lid.png" alt="Fitness Leader" />
+          <img src="./lid3.png" alt="Fitness Leader" />
         </div>
       </div>
     </header>
