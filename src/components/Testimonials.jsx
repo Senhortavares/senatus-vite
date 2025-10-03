@@ -7,6 +7,7 @@ import { testimonials } from "../data.jsx";
 import "./testimonials.css";
 
 
+
 const Depoimentos = () => {
   const [index, setIndex] = useState(0);
   const intervalRef = useRef(null);

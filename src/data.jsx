@@ -14,7 +14,7 @@ export const links = [
   { name: 'Início', path: '/' },
   { name: 'Formulário', path: '/plans' },
   { name: 'Imagens', path: '/gallery' },
-  { name: 'Notícias', path: '/notis' },
+  { name: 'Jogo', path: '/notis' },
   { name: 'Ouvidoria', path: '/ouvidoria' },
   { name: 'Sobre', path: '/sobre' },
 
