@@ -1,14 +1,18 @@
 /* Centraliza todo o conteúdo */
-.container {
+.container__J {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh; /* ocupa a tela toda */
   background: #0a0f1c; /* fundo azul escuro */
+  padding: 20px; /* evita que grude nas bordas em telas pequenas */
+  box-sizing: border-box;
+  text-align: center;
 }
 
 /* Botão estilizado */
 .btn-jogar {
+  display: inline-block;
   padding: 15px 40px;
   font-size: 1.3rem;
   font-weight: bold;
@@ -19,6 +23,7 @@
   border-radius: 12px;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
 }
 
 /* Hover */
@@ -29,10 +34,26 @@
   box-shadow: 0 6px 20px rgba(255, 215, 0, 0.9);
 }
 
-/* Responsivo (ajuste de tamanho em telas pequenas) */
+/* Ajuste em telas médias */
+@media (max-width: 900px) {
+  .btn-jogar {
+    font-size: 1.2rem;
+    padding: 14px 35px;
+  }
+}
+
+/* Responsivo (telas pequenas) */
 @media (max-width: 600px) {
   .btn-jogar {
     font-size: 1.1rem;
-    padding: 12px 30px;
+    padding: 12px 28px;
+  }
+}
+
+/* Muito pequenas (mobile bem compacto) */
+@media (max-width: 400px) {
+  .btn-jogar {
+    font-size: 1rem;
+    padding: 10px 24px;
   }
 }
