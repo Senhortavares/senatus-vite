@@ -5,11 +5,10 @@ import Home from "./pages/home/Home.jsx";
 import About from "./pages/about/About.jsx";
 import Notis from "./pages/noticias/Notis.jsx";
 import Ouvidoria from "./pages/Ouvidoria/Ouvidoria.jsx";
-
 import NotFound from "./pages/notFound/NotFound.jsx";
 import Plans from "../src/pages/formulario/Plans.jsx"; 
-
 import Gallery from "./pages/gallery/Gallery.jsx";
+import Aviso from "./pages/aviso/Aviso.jsx";
 
 const App = () => {
   return (
@@ -20,6 +19,7 @@ const App = () => {
         <Route path="/sobre" element={<About />} />
         <Route path="/notis" element={<Notis />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/aviso" element={<Aviso />} />
         <Route path="/plans" element={<Plans />} /> 
         <Route path="/ouvidoria" element={<Ouvidoria />} />
         <Route path="*" element={<NotFound />} />

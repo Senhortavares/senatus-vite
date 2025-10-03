@@ -20,11 +20,11 @@ const Footer = () => {
             JOÃO 3:16 — Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.
           </p>
           <ul className="footer__links">
+            <li><Link to="/plans">Fomulario</Link></li>
+            <li><Link to="/gallery">Imagns</Link></li>
+            <li><Link to="/notis">Jogos</Link></li>
+            <li><Link to="/Ouvidoria">Ouvidoria</Link></li>
             <li><Link to="/sobre">Sobre</Link></li>
-            <li><Link to="/plans">Formulário</Link></li>
-            <li><Link to="/ouvidoria">Ouvidoria</Link></li>
-            <li><Link to="/gallery">Galeria</Link></li>
-            <li><Link to="/contato">Contato</Link></li>
           </ul>
           <div className="footer__socials">    {/*  ___redes sociais do senatus_______ */}
             <a href="https://instagram.com/senatus" target="_blank" rel="noreferrer noopener" aria-label="Instagram">

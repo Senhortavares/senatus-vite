@@ -15,6 +15,7 @@ export const links = [
   { name: 'Formulário', path: '/plans' },
   { name: 'Imagens', path: '/gallery' },
   { name: 'Jogo', path: '/notis' },
+  { name: 'Avisos', path: '/aviso' },
   { name: 'Ouvidoria', path: '/ouvidoria' },
   { name: 'Sobre', path: '/sobre' },
 
@@ -52,4 +53,51 @@ export const testimonials = [
   { id: 2, name: 'Arnaud', job: 'Grão-Mestre', quote: 'Ordem, respeito e fraternidade.', avatar: '/gra2.png' },
   { id: 3, name: 'Sun', job: 'Administrador', quote: 'Ordem, respeito e fraternidade.', avatar: '/adm.png' },
   { id: 4, name: 'Warlen', job: 'Engenheiro', quote: 'Ordem, respeito e fraternidade.', avatar: '/eng1.png' },
+];
+
+
+
+// Avisos importantes
+// export const avisos = [
+//   {
+//     id: 1,
+//     img: "/cavaleiro.png", 
+//     title: "Aviso 1",
+//     desc: "O sistema estará em manutenção hoje às 22h."
+//   },
+//   {
+//     id: 2,
+//     img: "/cavaleiro.png",
+//     title: "Aviso 2",
+//     desc: "📢 Novo formulário disponível na aba de cadastros."
+//   },
+//   {
+//     id: 3,
+//     img: "/cavaleiro.png",
+//     title: "Aviso 3",
+//     desc: "🔒 Atualização de segurança aplicada com sucesso."
+//   }
+// ];
+
+export const avisos = [
+  {
+    id: 1,
+    title: "Aviso Importante",
+    desc: "⚠️ O sistema ficará indisponível hoje às 22h para manutenção."
+  },
+  {
+    id: 2,
+    title: "Novo Formulário",
+    desc: "📑 Já está disponível um novo formulário na aba Cadastros."
+  },
+  {
+    id: 3,
+    title: "Atualização",
+    desc: "🔒 Segurança reforçada no login. Refaça seu acesso se necessário."
+  },
+  {
+    id: 4,
+    title: "Evento",
+    desc: "🎉 A reunião anual do Senatus será no próximo sábado às 19h."
+  }
 ];
