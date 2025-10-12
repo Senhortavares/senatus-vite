@@ -24,7 +24,7 @@ export const links = [
 
 // Cards dos líderes
 export const programs = [
-  { id: 1, icon: <FaChessKing />, title: 'LÍDER SUPREMO: Anderson', info: 'Líder supremo do Senatus!', path: '/programs/111', imagem: '/lider1.png' },
+  { id: 1, icon: <FaChessKing />, title: 'LÍDER SUPREMO: Anderson',  info: 'Líder supremo do Senatus!', path: '/programs/111', imagem: '/lider1.png' },
   { id: 2, icon: <FaCrown />,     title: 'GRÃO-MESTRE: Arnaud',      info: 'Mestre do Senatus!', path: '/programs/222', imagem: '/gra2.png' },
   { id: 3, icon: <GiOldKing />,   title: 'ADMINISTRADORES: Sun',     info: 'Administradora da Senatus', path: '/programs/333', imagem: '/adm.png' },
   { id: 4, icon: <GiOldKing />,   title: 'ENGENHEIRO: Warlen',       info: 'Engenheiro do Senatus', path: '/programs/444', imagem: '/eng1.png' },
@@ -43,7 +43,7 @@ export const values = [
 // FAQs
 export const faqs = [
   { id: 1, question: 'O que é o SENATUS?', answer: 'Uma comunidade orientada por princípios, fraternidade e crescimento.' },
-  { id: 2, question: 'Como faço para entrar?', answer: 'Preencha o formulário e aguarde o contato.' },
+  { id: 2, question: 'Como faço para entrar?', answer: 'Preencha o formulário e vai aparecer um link para o Discord.' },
   { id: 3, question: 'Existe idade mínima?', answer: 'Sim, 15 anos.' },
 ];
 
@@ -83,7 +83,7 @@ export const avisos = [
   {
     id: 1,
     title: "Aviso Importante",
-    desc: "O nosso líder supremo irá trocar as imagens do nosso grupo, então não baixem ainda ."
+    desc: "Se tiver duvida vai ate a ouvidoria que esta no menu do site ."
   },
   {
     id: 2,
