@@ -99,6 +99,11 @@ export const avisos = [
     id: 4,
     title: "Reuniões",
     desc: "As reuniões no Discord acontecem todos os dias às 22h."
+  },
+    {
+    id: 4,
+    title: "Outubro Rosa",
+    desc: "Outubro é o mês da conscientização sobre o câncer de mama, uma oportunidade para reforçar a importância do autocuidado, da prevenção e do diagnóstico precoce. O laço rosa simboliza a união de forças em prol da vida, lembrando que o exame de toque, a mamografia e o acompanhamento médico podem salvar vidas. Vista-se de rosa, compartilhe informação e apoie essa causa — porque cuidar de si também é um ato de amor."
   }
 ];
 
