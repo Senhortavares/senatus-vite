@@ -17,11 +17,11 @@ const Footer = () => {
         <div className="footer__content">
           <h4 className="footer__title">SENATUS</h4>
           <p className="footer__verse">
-            JOÃO 3:16 — Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.
+            Salmos 24:4 — Aquele que tem as mãos limpas e o coração puro, e não se entrega à mentira, nem age com falsidade.
           </p>
           <ul className="footer__links">
             <li><Link to="/plans">Fomulario</Link></li>
-            <li><Link to="/gallery">Imagns</Link></li>
+            <li><Link to="/gallery">Imagens</Link></li>
             <li><Link to="/notis">Jogos</Link></li>
             <li><Link to="/Ouvidoria">Ouvidoria</Link></li>
             <li><Link to="/sobre">Sobre</Link></li>

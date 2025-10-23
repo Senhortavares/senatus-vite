@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "updatedAt": "2025-10-23T00:00:00Z",
+  "sections": [
+    { "title": "Início (Home)", "q": "inicio", "body": "Bem-vindo à Casa do Senatus. Na página Inicial (Home), encontrarás um compêndio sobre os líderes..." },
+    { "title": "Líderes", "q": "lideres", "body": "Sobre os Líderes: são referenciais de prudência e serviço..." },
+    { "title": "Filosofia & Valores", "q": "filosofia", "body": "Nossa filosofia: justiça com clemência, disciplina com humanidade..." },
+    { "title": "Perguntas Frequentes (FAQ)", "q": "faq", "body": "Perguntas & Respostas: dispomos de um rol de indagações comuns..." },
+    { "title": "Formulário de Entrada", "q": "formulario", "body": "Formulário de Entrada: para integrar os grupos oficiais (WhatsApp)..." },
+    { "title": "Imagens & Figurinhas", "q": "imagens", "body": "Imagens & Figurinhas: dispomos de insígnias e figurinhas oficiais..." },
+    { "title": "Avisos", "q": "avisos", "body": "Avisos: esta seção é o quadro de edictos..." },
+    { "title": "Jogo", "q": "jogo", "body": "Sobre o Jogo: encontra-se em forja..." },
+    { "title": "Convívio & Religião", "q": "convivio", "body": "Convívio & Respeito: o Senatus não se firma em uma única religião..." },
+    { "title": "Contato", "q": "contato", "body": "Canais de Contato: se necessitares voz mais imediata..." }
+  ],
+  "knowledge": [
+    { "question": "quem criou o senatus", "answer": "O criador é Anderson, Líder Supremo..." },
+    { "question": "quem fundou o senatus", "answer": "O Senatus foi fundado por Anderson, ao lado de Sun..." },
+    { "question": "quem é o lider supremo", "answer": "O Líder Supremo é Anderson..." },
+    { "question": "quem é o grão mestre", "answer": "O Grão-Mestre é Arnaud..." },
+    { "question": "principios", "answer": "Justiça, lealdade, disciplina, fraternidade e respeito..." },
+    { "question": "filosofia", "answer": "Não buscamos a força pela espada..." },
+    { "question": "juramento", "answer": "“Pela graça do Senatus...”" },
+    { "question": "reclamar", "answer": "Podes registrar tua reclamação aqui mesmo..." }
+  ]
+}

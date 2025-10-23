@@ -1,18 +1,47 @@
+/* ====== CONTAINER (Modo “celular” no desktop) ====== */
 .ouvidoria {
+  /* altura total menos o menu fixo */
+  height: calc(100vh - 5rem);
+  margin: 0 auto;
+  position: relative;
+  top: 5rem;
+
+  /* tamanho do “aparelho” no desktop */
+  width: min(430px, 100%);
+  max-width: 430px;
+  /* altura máxima elegante */
+  max-height: 860px;
+
+  /* Moldura do “telefone” */
+  background: #0d1b2a;
+  border-radius: 32px;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.55),
+    inset 0 0 0 2px rgba(0,0,0,.5);
+  overflow: hidden;
+
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 5rem); /* ocupa a tela inteira, menos a altura do menu */
-  max-width: 600px;
-  margin: 0 auto; /* centraliza no desktop */
-  background: #0d1b2a;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0,0,0,.5);
-  position: relative;
-  top: 5rem; /* garante que fique abaixo do menu fixo */
 }
 
-/* Área do chat */
+/* “Notch” do telefone (desktop) */
+.ouvidoria::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 42%;
+  height: 18px;
+  background: #081522;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  z-index: 2;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.05) inset;
+}
+
+/* ====== ÁREA DO CHAT ====== */
 .ouvidoria__chat {
   flex: 1;
   overflow-y: auto;
@@ -20,11 +49,26 @@
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-  background: linear-gradient(180deg, #0d1b2a, #1b263b);
+  background:
+    radial-gradient(900px 480px at 80% -20%, rgba(52, 84, 209, .15), transparent 60%),
+    linear-gradient(180deg, #0d1b2a, #1b263b);
   scroll-behavior: smooth;
 }
 
-/* Mensagens */
+/* Scrollbar discreto (Chrome/Edge) */
+.ouvidoria__chat::-webkit-scrollbar { width: 8px; }
+.ouvidoria__chat::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.08);
+  border-radius: 8px;
+}
+.ouvidoria__chat::-webkit-scrollbar-track { background: transparent; }
+
+/* ====== MENSAGENS ====== */
+@keyframes msg-in {
+  from { transform: translateY(6px); opacity: 0; }
+  to   { transform: translateY(0);   opacity: 1; }
+}
+
 .message {
   max-width: 75%;
   padding: 0.8rem 1rem;
@@ -32,6 +76,8 @@
   line-height: 1.5;
   font-size: 0.95rem;
   word-wrap: break-word;
+  animation: msg-in .18s ease-out both;
+  box-shadow: 0 6px 14px rgba(0,0,0,.18);
 }
 
 .message.bot {
@@ -39,14 +85,13 @@
   background: #1e2e4a;
   color: #f1f1f1;
   border-bottom-left-radius: 6px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.4rem;
 }
 
 .message.bot img {
-  width: 18px;
-  height: 18px;
+  width: 18px; height: 18px;
 }
 
 .message.user {
@@ -56,86 +101,126 @@
   border-bottom-right-radius: 6px;
 }
 
-/* Input */
+/* ====== BOT “DIGITANDO…” (bolinhas ...) ====== */
+.message.bot.typing {
+  position: relative;
+  min-width: 70px;
+  justify-content: center;
+}
+.message.bot.typing .dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.message.bot.typing .dots i {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #dfe7ff;
+  opacity: 0.25;
+  display: inline-block;
+  animation: dot 1.2s infinite ease-in-out;
+}
+.message.bot.typing .dots i:nth-child(2) { animation-delay: .15s; }
+.message.bot.typing .dots i:nth-child(3) { animation-delay: .30s; }
+
+@keyframes dot {
+  0%, 60%, 100% { transform: translateY(0); opacity: .25; }
+  30% { transform: translateY(-3px); opacity: 1; }
+}
+
+/* Mensagens meta (feedback do sistema) */
+.message.meta {
+  font-size: 12px;
+  color: #a8b0c7;
+  opacity: 0.85;
+  box-shadow: none;
+  background: transparent;
+  align-self: center;
+}
+
+/* ====== INPUT ====== */
 .ouvidoria__input {
   display: flex;
   align-items: center;
+  gap: .6rem;
   padding: 0.6rem;
   background: #112240;
+  border-top: 1px solid rgba(255,255,255,0.06);
 }
 
 .ouvidoria__input input {
   flex: 1;
   padding: 0.7rem 1rem;
   border-radius: 25px;
-  border: none;
+  border: 1px solid transparent;
   outline: none;
   background: #1e355b;
   color: #fff;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  transition: box-shadow .15s ease, border-color .15s ease;
 }
+.ouvidoria__input input:focus {
+  border-color: rgba(255,255,255,0.18);
+  box-shadow: 0 0 0 3px rgba(112, 169, 255, .18);
+}
+.ouvidoria__input input::placeholder { color: #b7c3d6; }
 
-.ouvidoria__input input::placeholder {
-  color: #aaa;
+/* Estado de erro do input (opcional) */
+.ouvidoria__input input.invalid {
+  border-color: #ff6b6b !important;
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.15);
 }
+@keyframes shake-x {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+}
+.ouvidoria__input input.invalid.shake { animation: shake-x .2s ease-in-out 0s 2; }
 
 .ouvidoria__input button {
-  margin-left: 0.6rem;
-  width: 42px;
-  height: 42px;
+  width: 44px; height: 44px;
   border-radius: 50%;
-  border: none;
-  background: gold;
-  color: #111;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border: none; cursor: pointer;
+  background: gold; color: #111;
+  font-size: 1rem; font-weight: 800;
+  display: grid; place-items: center;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.ouvidoria__input button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(0,0,0,.25);
 }
 
-/* Botão final (Discord) */
-.final-step {
-  text-align: center;
-  margin-top: 1rem;
+/* Aviso abaixo do input */
+.input-error {
+  margin: 6px .6rem 0;
+  font-size: 12px; line-height: 1.3;
+  color: #ff8080;
+  display: flex; gap: 6px; align-items: flex-start;
 }
+.input-error::before { content: "⚠"; }
 
+/* ====== BOTÕES FINAIS ====== */
+.final-step { text-align: center; margin-top: 1rem; }
 .discord-btn, .contact-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  margin: 0.5rem;
-  padding: 0.7rem 1.2rem;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 700;
-  color: #111;
-  background: gold;
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 0.4rem; margin: 0.5rem; padding: 0.7rem 1.2rem;
+  border-radius: 10px; text-decoration: none; font-weight: 700;
+  color: #111; background: gold;
   transition: transform 0.2s ease, background 0.2s ease;
 }
+.discord-btn:hover { background: #ffd633; transform: translateY(-1px); }
 
-.discord-btn:hover {
-  background: #ffd633;
-  transform: scale(1.05);
-}
-
-/* 📱 Mobile */
+/* ====== MOBILE (preenche a tela, sem moldura) ====== */
 @media (max-width: 768px) {
   .ouvidoria {
     height: calc(100vh - 4.5rem);
-    max-width: 100%;
-    border-radius: 0;
-    top: 4.5rem; /* ajusta ao menu */
+    width: 100%; max-width: none; max-height: none;
+    border-radius: 0; border: 0;
+    top: 4.5rem;
+    box-shadow: none;
   }
+  .ouvidoria::before { display: none; } /* esconde notch no mobile */
 
-  .message {
-    font-size: 0.9rem;
-  }
-
-  .ouvidoria__input input {
-    font-size: 0.85rem;
-    padding: 0.6rem 0.9rem;
-  }
+  .message { font-size: 0.92rem; }
+  .ouvidoria__input input { font-size: 0. Nine5rem; }
 }
