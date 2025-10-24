@@ -1,6 +1,5 @@
-/* Seção Values */ 
 /* ================================
-   Seção Values
+   Seção Values (Estilo Senatus)
 ================================ */
 .values {
   padding: 4rem 1rem;
@@ -14,31 +13,29 @@
   gap: 3rem;
 }
 
+.values__left { flex: 1; }
 
-/* ----- Lado esquerdo (imagem) ----- */
-.values__left {
-  flex: 1;
-}
-
+/* Imagem com bordas mais redondas e brilho */
 .values__image {
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
   max-width: 500px;
   margin: 0 auto;
+  position: relative;
+  border: 1px solid rgba(255,255,255,.08);
+  background: linear-gradient(145deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
 }
 
 .value__img {
   width: 60px;
   height: auto;
   margin-bottom: 10px;
-  border-radius: 6px;
+  border-radius: 8px;
 }
 
-/* ----- Lado direito (conteúdo + cards) ----- */
-.values__right {
-  flex: 1.3;
-}
+/* Conteúdo -> texto e cards */
+.values__right { flex: 1.3; }
 
 .values__right p {
   margin: 1rem 0 2rem;
@@ -47,134 +44,232 @@
   line-height: 1.6;
 }
 
-/* ----- Cards ----- */
+/* Grid dos cards de valores */
 .values__wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
 }
 
+/* Card base (menor, mais redondo, com animação) */
 .values__value {
   text-align: center;
-  padding: 1.5rem;
+  padding: 1.1rem;
   border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(6px);
-  transition: var(--transition);
+  background: linear-gradient(145deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.08);
+  backdrop-filter: blur(8px);
+  transition: transform .4s ease, box-shadow .4s ease, border-color .4s ease;
   box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+  animation: valuesFloat 6s ease-in-out infinite;
 }
 
+/* brilho dourado animado passando */
+.values__value::before{
+  content:"";
+  position:absolute; inset:0;
+  background: conic-gradient(from 180deg at 50% 50%,
+    transparent 0deg, rgba(212,175,55,.12) 70deg,
+    rgba(212,175,55,.45) 180deg, rgba(212,175,55,.12) 290deg, transparent 360deg);
+  opacity: .0; transition: opacity .5s ease;
+  pointer-events: none;
+}
+.values__value:hover::before{ opacity: .9; }
+
+/* linha dourada na base */
+.values__value::after{
+  content:"";
+  position:absolute; left:0; bottom:0; width:100%; height:3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: .85;
+}
+
+/* Hover 3D leve */
 .values__value:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
-  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-10px) scale(1.03) rotateX(0.5deg);
+  box-shadow: 0 20px 44px rgba(0,0,0,.55);
+  border-color: rgba(201,162,39,.45);
 }
 
+/* Ícone / símbolo */
 .values__value span {
   font-size: 2rem;
   color: var(--gold);
   display: inline-block;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.55rem;
+  filter: drop-shadow(0 0 6px rgba(212,175,55,.35));
 }
 
+/* Títulos e textos */
 .values__value h4 {
-  font-family: var(--font-title);
+  font-family: 'Cinzel', serif;
   color: var(--gold);
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  margin-bottom: .45rem;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  transition: color .3s ease;
 }
-
 .values__value small {
-  font-size: 0.9rem;
+  font-size: .9rem;
   color: var(--color-muted);
   line-height: 1.5;
 }
+.values__value:hover h4 { color: var(--gold-2); }
 
-/* ----- Responsividade Values ----- */
-@media (max-width: 1024px) {
-  .values__container {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .values__left {
-    order: -1; /* imagem vem primeiro no mobile */
-  }
-
-  .values__right {
-    margin-top: 2rem;
-  }
+/* Imagem interna opcional com movimento (se usar) */
+.values__value .card__media{
+  margin: .5rem .5rem .8rem;
+  border-radius: calc(var(--radius) - 6px);
+  overflow: hidden; position: relative;
+  border: 1px solid rgba(255,255,255,.06);
+}
+.values__value .card__media img{
+  width:100%; display:block; border-radius: inherit;
+  object-fit: cover;
+  transform: translate3d(0,0,0) scale(1.02);
+  filter: brightness(.96) contrast(1.02);
+  transition: transform .9s cubic-bezier(.2,.7,.2,1), filter .4s ease;
+}
+.values__value:hover .card__media img{
+  transform: translate3d(0,-2%,0) scale(1.08);
+  filter: brightness(1.08) contrast(1.04);
 }
 
-@media (max-width: 768px) {
-  .values__wrapper {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
+/* Animação de “respirar” */
+@keyframes valuesFloat {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
 
-  .values__value {
-    padding: 1.2rem;
-  }
+/* Responsividade Values */
+@media (max-width: 1024px) {
+  .values__container { flex-direction: column; text-align: center; }
+  .values__left { order: -1; } /* imagem vem primeiro no mobile */
+  .values__right { margin-top: 2rem; }
+}
+@media (max-width: 768px) {
+  .values__wrapper { grid-template-columns: 1fr; gap: 1rem; }
+  .values__value { padding: 1rem; }
 }
 
 /* ================================
    Cards dos Líderes (Programs)
+   (mesmo estilo: menor, redondo, animação e mídia com movimento)
 ================================ */
 .programs__wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
   margin-top: 2rem;
 }
 
-/* ----- Card ----- */
+/* Card base */
 .card.programs__program {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(145deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.08);
   border-radius: var(--radius);
-  padding: 1.2rem;
+  padding: 1rem;
   text-align: center;
   box-shadow: var(--shadow-soft);
-  transition: var(--transition);
-  backdrop-filter: blur(6px);
+  transition: transform .4s ease, box-shadow .4s ease, border-color .4s ease;
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+  animation: programsFloat 6s ease-in-out infinite;
 }
 
-/* ----- Imagem dentro do card ----- */
+/* brilho + linha dourada */
+.card.programs__program::before{
+  content:"";
+  position:absolute; inset:0;
+  background: conic-gradient(from 180deg at 50% 50%,
+    transparent 0deg, rgba(212,175,55,.12) 70deg,
+    rgba(212,175,55,.45) 180deg, rgba(212,175,55,.12) 290deg, transparent 360deg);
+  opacity:0; transition: opacity .5s ease;
+  pointer-events:none;
+}
+.card.programs__program::after{
+  content:"";
+  position:absolute; left:0; bottom:0; width:100%; height:4px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity:.85;
+}
+
+.card.programs__program:hover{
+  transform: translateY(-12px) scale(1.035) rotateX(.6deg);
+  box-shadow: 0 22px 48px rgba(0,0,0,.55);
+  border-color: rgba(201,162,39,.55);
+}
+.card.programs__program:hover::before{ opacity:.9; }
+
+/* Imagem dentro do card (arredondada + movimento) */
+.card.programs__program .card__media{
+  margin: .4rem .4rem .8rem;
+  border-radius: calc(var(--radius) - 6px);
+  overflow: hidden; position: relative;
+  border: 1px solid rgba(255,255,255,.06);
+}
 .card.programs__program img {
   width: 100%;
   height: auto;
-  border-radius: var(--radius);
+  border-radius: inherit;
   object-fit: cover;
+  transform: translate3d(0,0,0) scale(1.02);
+  filter: brightness(.96) contrast(1.02);
+  transition: transform .9s cubic-bezier(.2,.7,.2,1), filter .4s ease;
+}
+.card.programs__program:hover img {
+  transform: translate3d(0,-2%,0) scale(1.09);
+  filter: brightness(1.08) contrast(1.04);
 }
 
-/* ----- Responsividade Programs ----- */
+/* Título e texto dentro do card */
+.card.programs__program h4 {
+  font-family: 'Cinzel', serif;
+  color: var(--gold);
+  font-size: 1rem;
+  margin: .4rem 0 .25rem;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  transition: color .3s ease;
+}
+.card.programs__program p {
+  font-size: .9rem;
+  color: var(--color-muted);
+}
+.card.programs__program:hover h4 { color: var(--gold-2); }
+
+/* Animação de “respirar” */
+@keyframes programsFloat {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* Responsividade Programs */
 @media (max-width: 768px) {
   .programs__wrapper {
-    grid-template-columns: repeat(2, 1fr); /* 2 cards por linha no mobile */
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
-
-  .card.programs__program {
-    padding: 0.8rem;
-  }
-
-  .card.programs__program h4 {
-    font-size: 0.95rem;
-  }
-
-  .card.programs__program p {
-    font-size: 0.8rem;
-  }
+  .card.programs__program { padding: .8rem; }
+  .card.programs__program h4 { font-size: .95rem; }
+  .card.programs__program p { font-size: .82rem; }
 }
-
 @media (max-width: 480px) {
   .programs__wrapper {
-    grid-template-columns: 1fr 1fr; /* mantém 2 por linha mesmo em telas pequenas */
-    gap: 0.8rem;
+    grid-template-columns: 1fr 1fr;
+    gap: .8rem;
   }
+  .card.programs__program { padding: .65rem; }
+}
 
-  .card.programs__program {
-    padding: 0.6rem;
+/* Acessibilidade: reduzir movimento */
+@media (prefers-reduced-motion: reduce){
+  .values__value,
+  .card.programs__program{
+    animation: none !important;
   }
 }

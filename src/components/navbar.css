@@ -1,3 +1,4 @@
+/* ===== Barra ===== */
 nav {
   height: 5rem;
   width: 100%;
@@ -11,6 +12,27 @@ nav {
   justify-content: center;
 }
 
+/* 🔆 brilho discreto quando há atualizações globais */
+.nav--updated {
+  background:
+    linear-gradient(90deg, rgba(224,193,90,0.12), rgba(224,193,90,0) 25%, rgba(224,193,90,0.12) 50%, rgba(224,193,90,0) 75%, rgba(224,193,90,0.12));
+  animation: goldGlow 4s ease-in-out infinite;
+  box-shadow: 0 0 12px rgba(224, 193, 90, 0.25);
+}
+@keyframes goldGlow {
+  0%, 100% { box-shadow: 0 0 8px rgba(224, 193, 90, 0.25); }
+  50% { box-shadow: 0 0 18px rgba(224, 193, 90, 0.55); }
+}
+
+/* overlay quando o menu mobile está aberto */
+.nav__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 98;
+}
+
+/* ===== Container ===== */
 .nav__container {
   max-width: 1200px;
   width: 100%;
@@ -27,7 +49,6 @@ nav {
   display: flex;
   align-items: center;
 }
-
 .logo img {
   width: 100%;
   height: auto;
@@ -39,9 +60,23 @@ nav {
   background: none;
   border: none;
   font-size: 2rem;
-  color: white;
+  color: #fff;
   cursor: pointer;
-  display: none; /* só mostra no mobile */
+  display: none; /* aparece só no mobile */
+  position: relative; /* para posicionar o dot dentro do botão */
+  transition: transform .2s ease, color .2s ease, filter .3s ease;
+}
+
+/* destaque dourado no ícone quando houver qualquer update */
+.nav__toggle--updated {
+  color: #e0c15a !important;
+  filter: drop-shadow(0 0 4px rgba(224,193,90,.5));
+  animation: glowRotate 3.2s linear infinite;
+}
+@keyframes glowRotate {
+  0%   { transform: rotate(0deg);   filter: drop-shadow(0 0 4px rgba(224,193,90,.5)); }
+  50%  { transform: rotate(8deg);   filter: drop-shadow(0 0 10px rgba(224,193,90,.9)); }
+  100% { transform: rotate(0deg);   filter: drop-shadow(0 0 4px rgba(224,193,90,.5)); }
 }
 
 /* ===== Links (desktop) ===== */
@@ -51,51 +86,117 @@ nav {
   align-items: center;
   list-style: none;
 }
-
+.nav__link li {
+  position: relative; /* base p/ animação e dot */
+}
 .nav__link a {
-  color: white;
+  color: #fff;
   text-decoration: none;
   transition: 0.3s ease;
+  position: relative;            /* <- permite posicionar a bolinha dentro do link */
+  padding-right: 10px;           /* espaço pro dot à direita */
+  font-weight: 500;
 }
-
 .nav__link a:hover {
   color: rgb(164, 120, 54); /* dourado */
+}
+.active-nav {
+  color: rgb(224, 193, 90) !important;
+}
+
+/*  Bolinha de notificação (links e botão) */
+.nav__dot {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  width: 10px;
+  height: 10px;
+  background: #e53935;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(0,0,0,.25);
+  animation: navDotPulse 1.6s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes navDotPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.2); opacity: .85; }
+}
+
+/* dot específico do botão (não desloca o ícone) */
+.nav__toggle-boton .nav__dot {
+  top: -2px;
+  right: -2px;
+  width: 9px;
+  height: 9px;
+}
+
+/* ===== Animações simples para os itens quando menu abre/fecha ===== */
+.fade-in {
+  animation: fadeInUp .28s ease both;
+}
+.fade-out {
+  animation: fadeOut .2s ease both;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
 }
 
 /* ===== Mobile ===== */
 @media screen and (max-width: 1024px) {
-  .nav__toggle-boton {
-    display: block; /* aparece no mobile */
-  }
+  .nav__toggle-boton { display: block; }
 
   .nav__link {
     position: fixed;
     top: 0;
     right: -100%;
     height: 100vh;
-    width: 240px;
-    background-color: rgba(4, 27, 44, 0.95);
+    width: 260px;
+    background: rgba(4, 27, 44, 0.96);
+    backdrop-filter: blur(6px);
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1.2rem;
     transition: right 0.3s ease-in-out;
-    box-shadow: -1rem 0 2rem rgba(0, 0, 0, 0.4);
+    box-shadow: -1rem 0 2rem rgba(0, 0, 0, 0.45);
+    z-index: 99;
   }
-
-  .nav__link.show_nav {
-    right: 0; /* abre o menu */
-  }
+  .nav__link.show_nav { right: 0; }
 
   .nav__link li a {
-    color: white;
-    font-size: 1.2rem;
-    padding: 0.8rem 1rem;
-    border-radius: 8px;
-    transition: background 0.3s ease;
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    transition: background 0.25s ease, color 0.25s ease;
+    width: 85%;
+    text-align: center;
+  }
+  .nav__link li a:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgb(224, 193, 90);
   }
 
-  .nav__link li a:hover {
-    background: rgba(255, 255, 255, 0.1);
+  /* Ajuste do dot no mobile: um pouco mais afastado */
+  .nav__link .nav__dot {
+    top: 6px;
+    right: 12px;
+  }
+}
+
+/* Acessibilidade: reduz movimento se preferido */
+@media (prefers-reduced-motion: reduce) {
+  .nav__dot,
+  .nav--updated,
+  .nav__toggle--updated,
+  .fade-in,
+  .fade-out {
+    animation: none !important;
+    transition: none !important;
   }
 }

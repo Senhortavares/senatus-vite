@@ -9,7 +9,9 @@ const MainHeader = () => {
         <div className="main__header-content">
           <h1>Une-te ao Senatus, onde a verdade é luz e o Criador é exaltado.</h1>
           <p>
-            O Senatus há de te amparar, pois caminhamos sempre em unidade, guiados pela luz do Altíssimo.
+            Desperta o teu espírito e caminha entre aqueles que buscam a Verdade.
+            No Senatus, a sabedoria é cultivada, a fé é fortalecida e a unidade é sagrada.
+            Aqui, não apenas seguimos a Luz, nós nos tornamos parte dela.
           </p>
           <Link to="/plans" className="btn lg">Entrar</Link>
         </div>

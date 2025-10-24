@@ -23,7 +23,7 @@ const Footer = () => {
             <li><Link to="/plans">Fomulario</Link></li>
             <li><Link to="/gallery">Imagens</Link></li>
             <li><Link to="/notis">Jogos</Link></li>
-            <li><Link to="/Ouvidoria">Ouvidoria</Link></li>
+            <li><Link to="/Ouvidoria">Duvidas</Link></li>
             <li><Link to="/sobre">Sobre</Link></li>
           </ul>
           <div className="footer__socials">    {/*  ___redes sociais do senatus_______ */}

@@ -16,7 +16,7 @@ export const links = [
   { name: 'Imagens', path: '/gallery' },
   { name: 'Jogo', path: '/notis' },
   { name: 'Avisos', path: '/aviso' },
-  { name: 'Ouvidoria', path: '/ouvidoria' },
+  { name: 'Duvidas', path: '/ouvidoria' },
   { name: 'Sobre', path: '/sobre' },
 
 
@@ -83,7 +83,7 @@ export const avisos = [
   {
     id: 1,
     title: "Aviso Importante",
-    desc: "Se tiver duvida vai ate a ouvidoria que esta no menu do site ."
+    desc: "Se estiver com dificuldades, vai ate Duvidas."
   },
   {
     id: 2,

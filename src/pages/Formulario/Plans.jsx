@@ -10,7 +10,7 @@ const ChatForm = () => {
   const LINK_DISCORD = "https://discord.gg/SEU_SERVIDOR";                 // seu servidor Discord
 
   const [messages, setMessages] = useState([
-    { from: "bot", text: "Olá, Tudo bem! para começarmos, informe seu nome completo (nome e sobrenome)." }
+    { from: "bot", text: "Seja cordialmente bem-vindo ao Senatus. Como devo chamá-lo(a) (nome e sobrenome)." }
   ]);
   const [step, setStep] = useState(0);
   const [input, setInput] = useState("");
@@ -160,7 +160,7 @@ const ChatForm = () => {
         })
       });
       if (res.ok) {
-        setMessages(m => [...m, { from: "meta", text: "Seus dados foram registrados." }]);
+        setMessages(m => [...m, { from: "meta", text: "Voce esta registrado no senatus." }]);
       } else {
         setMessages(m => [...m, { from: "meta", text: "Não foi possível salvar agora." }]);
       }
