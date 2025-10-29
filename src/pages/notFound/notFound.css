@@ -1,80 +1,114 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+/* =========================================================
+   ALERT PAGE – compatível com navbar fixa (usa --nav-height)
+   • Não mexe no <body> global
+   • Layout centralizado e responsivo
+========================================================= */
+
+/* Wrapper da página de alerta (use <section class="alert-page">) */
+.alert-page {
+  /* empurra o conteúdo exatamente pela altura do menu */
+  padding: calc(var(--nav-height, 78px) + 1.5rem) 1rem 2rem;
+
+  /* fundo próprio desta página (não afeta outras) */
   background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
   color: #fff;
+
+  /* ocupa a altura visível sem ficar atrás do menu */
+  min-height: calc(100dvh - var(--nav-height, 78px));
+  box-sizing: border-box;
+
+  /* tipografia local (não sobrescreve o body do site) */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Bloco central do alerta */
 .alert-container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+
+  gap: 1.25rem;
   max-width: 900px;
-  margin: 0 auto;
-  height: 100vh;
+  width: 100%;
+
   text-align: center;
+
   background: rgba(255, 215, 0, 0.08);
   border: 2px solid #ffd700;
   border-radius: 15px;
   padding: 30px;
+
   box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
 }
 
+/* Imagem (lado esquerdo no desktop) */
 .alert-container img {
   max-width: 280px;
   height: auto;
-  margin: 20px;
+  margin: 12px;
   filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.4));
 }
 
+/* Texto (lado direito no desktop) */
 .alert-text {
-  flex: 1;
-  min-width: 250px;
+  flex: 1 1 320px;
+  min-width: 260px;
 }
 
 .alert-text h1 {
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
   margin-bottom: 15px;
   color: #ffd700;
   text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
 }
 
 .alert-text p {
-  font-size: 1.2rem;
-  line-height: 1.5;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  line-height: 1.55;
   margin-bottom: 20px;
+  color: #f3f3f3;
 }
 
+/* CTA */
 .alert-text a {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+
   background: #ffd700;
   color: #1a1a1a;
-  font-weight: bold;
-  padding: 12px 25px;
-  border-radius: 8px;
+  font-weight: 700;
+
+  padding: 12px 24px;
+  border-radius: 10px;
   text-decoration: none;
-  transition: 0.3s;
+
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  will-change: transform;
 }
 
 .alert-text a:hover {
   background: #e6c200;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.55);
 }
 
 /* Responsivo */
 @media (max-width: 768px) {
   .alert-container {
     flex-direction: column;
-    padding: 20px;
+    padding: 22px;
   }
-
   .alert-text h1 {
-    font-size: 2rem;
+    font-size: clamp(1.6rem, 5.5vw, 2rem);
   }
-
   .alert-text p {
-    font-size: 1rem;
+    font-size: .98rem;
   }
 }

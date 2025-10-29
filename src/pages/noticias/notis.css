@@ -1,59 +1,82 @@
-/* Centraliza todo o conteúdo */
+/* =========================================================
+   PÁGINA "JOGAR" – compatível com navbar fixa
+========================================================= */
+
 .container__J {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* ocupa a tela toda */
-  background: #0a0f1c; /* fundo azul escuro */
-  padding: 20px; /* evita que grude nas bordas em telas pequenas */
+
+  /* agora respeita o menu fixo */
+  min-height: calc(100dvh - var(--nav-height, 78px));
+
+  background: #0a0f1c;
+  padding: 2rem 1rem;
   box-sizing: border-box;
   text-align: center;
 }
 
-/* Botão estilizado */
+/* ---------------------------------------------------------
+   Botão "JOGAR"
+--------------------------------------------------------- */
 .btn-jogar {
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
   padding: 15px 40px;
-  font-size: 1.3rem;
-  font-weight: bold;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+
   text-decoration: none;
-  color: #0a0f1c;
-  background: #ffd700; /* dourado */
-  border: 2px solid #f5d36b;
-  border-radius: 12px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
   cursor: pointer;
+
+  color: #0a0f1c;
+  background: linear-gradient(135deg, #ffd700, #f0c450);
+  border-radius: 14px;
+  border: none;
+
+  transition: transform .25s ease, box-shadow .25s ease,
+              filter .25s ease;
+
+  box-shadow: 0 6px 18px rgba(255, 215, 0, .4);
 }
 
-/* Hover */
+/* Hover com brilho */
 .btn-jogar:hover {
-  background: #f5d36b;
-  color: #000;
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.9);
+  transform: scale(1.07) translateY(-3px);
+  filter: brightness(1.15);
+  box-shadow: 0 10px 28px rgba(255, 215, 0, .9);
 }
 
-/* Ajuste em telas médias */
+/* Pressionado */
+.btn-jogar:active {
+  transform: scale(.96);
+  filter: brightness(.95);
+}
+
+/* ---------------------------------------------------------
+   RESPONSIVIDADE
+--------------------------------------------------------- */
+
 @media (max-width: 900px) {
   .btn-jogar {
-    font-size: 1.2rem;
-    padding: 14px 35px;
+    font-size: 1.25rem;
+    padding: 14px 36px;
   }
 }
 
-/* Responsivo (telas pequenas) */
 @media (max-width: 600px) {
   .btn-jogar {
-    font-size: 1.1rem;
-    padding: 12px 28px;
+    font-size: 1.15rem;
+    padding: 12px 30px;
   }
 }
 
-/* Muito pequenas (mobile bem compacto) */
 @media (max-width: 400px) {
   .btn-jogar {
     font-size: 1rem;
-    padding: 10px 24px;
+    padding: 11px 26px;
   }
 }

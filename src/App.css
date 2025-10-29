@@ -1,15 +1,18 @@
-/* ==============================
-   Tipos clássicos: títulos com Cinzel, texto com Merriweather
-============================== */
+/* =========================================================
+   SENATUS UI — ESTILO DE CARDS E PAINÉIS (DOURADO + AZUL)
+   Esse arquivo NÃO sobrescreve o index.css e é seguro usar
+========================================================= */
+
+/* Import das fontes */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Merriweather:wght@400;700&display=swap');
 
+/* Variáveis EXCLUSIVAS deste tema (não mexem nas globais do index.css) */
 :root {
-  /* Paleta SENATUS (dourado + azul noite) */
-  --color-bg: #091423;
-  --color-bg-alt: #0d1d33;
-  --color-panel: #0f223d;
-  --color-text: #f1f2f4;
-  --color-muted: #c9cdd6;
+  --senatus-bg: #091423;
+  --senatus-bg-alt: #0d1d33;
+  --senatus-panel: #0f223d;
+  --senatus-text: #f1f2f4;
+  --senatus-muted: #c9cdd6;
 
   --gold: #c9a227;
   --gold-2: #e0c15a;
@@ -19,53 +22,58 @@
   --success: #22c55e;
   --danger: #e53935;
 
-  --radius: 22px; /* Mais redondo */
+  --radius: 22px;
   --shadow: 0 10px 30px rgba(0,0,0,.35);
   --shadow-soft: 0 6px 18px rgba(0,0,0,.25);
-  --container: 1200px;
-  --transition: all .3s ease;
-  --col-min: 220px; /* Cards menores */
+  --col-min: 220px;
 }
 
-/* ==============================
-   Reset básico
-============================== */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* =========================================================
+   Base
+========================================================= */
 
-html, body { height: 100%; }
+html, body {
+  height: 100%;
+}
 
 body {
   font-family: 'Merriweather', serif;
-  color: var(--color-text);
+  color: var(--senatus-text);
+
+  /* mantém o body abaixo do menu fixo */
+  padding-top: calc(var(--nav-height) + 12px);
+
   background:
     radial-gradient(1200px 600px at 0% 0%, rgba(255,255,255,.02), transparent 60%),
-    linear-gradient(180deg, #071020, #091423 30%, #0a1830);
+    linear-gradient(180deg, #071020, var(--senatus-bg) 30%, #0a1830);
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
-img { max-width: 100%; display: block; height: auto; }
+img {
+  max-width: 100%;
+  display: block;
+}
 
-a { color: var(--gold); text-decoration: none; transition: var(--transition); }
-a:hover { color: var(--gold-2); }
+a {
+  color: var(--gold);
+  text-decoration: none;
+  transition: .3s ease;
+}
+a:hover {
+  color: var(--gold-2);
+}
 
 h1, h2, h3, h4 {
   font-family: 'Cinzel', serif;
   color: var(--gold);
-  margin: 0 0 .6rem;
+  margin-bottom: .6rem;
   line-height: 1.15;
 }
 
-.container {
-  width: 100%;
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
+/* =========================================================
+   Botões
+========================================================= */
 .btn {
   display: inline-block;
   padding: .85rem 1.4rem;
@@ -75,12 +83,16 @@ h1, h2, h3, h4 {
   font-weight: 700;
   letter-spacing: .3px;
   box-shadow: var(--shadow-soft);
-  transition: var(--transition);
+  transition: .3s ease;
   border: none;
   position: relative;
   overflow: hidden;
 }
+.btn:hover { transform: translateY(-2px) scale(1.04); filter: brightness(1.07); }
+.btn:active { transform: scale(0.97); }
+.btn.lg { padding: 1rem 1.8rem; font-size: 1.05rem; }
 
+/* brilho em movimento no hover */
 .btn::after {
   content: "";
   position: absolute;
@@ -88,20 +100,17 @@ h1, h2, h3, h4 {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255,255,255,0.18);
   transform: rotate(25deg) translate(-200%, 0);
   transition: transform 0.6s ease;
 }
-
 .btn:hover::after { transform: rotate(25deg) translate(200%, 0); }
-.btn:hover { transform: translateY(-2px) scale(1.03); filter: brightness(1.07); }
-.btn:active { transform: scale(0.97); }
-.btn.lg { padding: 1rem 1.8rem; font-size: 1.05rem; }
 
-/* ==============================
+/* =========================================================
    Cards
-============================== */
-.cards-grid{
+========================================================= */
+
+.cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(var(--col-min), 1fr));
   gap: 22px;
@@ -115,12 +124,13 @@ h1, h2, h3, h4 {
   box-shadow: var(--shadow-soft);
   backdrop-filter: blur(8px);
   padding: 1.2rem;
-  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-  overflow: hidden;
+  transition: .4s ease;
   position: relative;
+  overflow: hidden;
   animation: cardFloat 6s ease-in-out infinite;
 }
 
+/* efeito dourado na borda ao passar o mouse */
 .card::before {
   content: "";
   position: absolute;
@@ -128,84 +138,49 @@ h1, h2, h3, h4 {
   left: -75%;
   width: 50%;
   height: 100%;
-  background: conic-gradient(from 180deg at 50% 50%, transparent 0deg, rgba(212,175,55,.12) 70deg, rgba(212,175,55,.45) 180deg, rgba(212,175,55,.12) 290deg, transparent 360deg);
+  background: conic-gradient(from 180deg at 50% 50%,
+      transparent 0deg,
+      rgba(212,175,55,.22) 140deg,
+      rgba(212,175,55,.45) 220deg,
+      transparent 360deg);
   transform: skewX(-25deg);
-  transition: left 0.8s ease;
+  transition: left .8s ease;
   opacity: .85;
 }
-
 .card:hover::before { left: 125%; }
+
 .card:hover {
-  transform: translateY(-12px) scale(1.035) rotateX(0.6deg);
-  box-shadow: 0 22px 48px rgba(0,0,0,.55);
-  border-color: rgba(201,162,39,.55);
+  transform: translateY(-10px) scale(1.03);
+  border-color: rgba(201,162,39,.5);
 }
-
-.card h3 {
-  color: var(--gold);
-  font-family: 'Cinzel', serif;
-  font-weight: 700;
-  font-size: 1rem;
-  margin-bottom: .4rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: color 0.3s ease;
-}
-
-.card p {
-  color: var(--color-muted);
-  font-size: .9rem;
-}
-
-.card:hover h3 { color: var(--gold-2); }
 
 .card__media {
   margin: 0 .6rem 0.9rem;
   border-radius: calc(var(--radius) - 6px);
   overflow: hidden;
-  position: relative;
 }
-
 .card__media img {
-  border-radius: inherit;
   width: 100%;
-  height: auto;
   object-fit: cover;
-  transition: transform .9s cubic-bezier(.2,.7,.2,1), filter .4s ease;
-  transform: translate3d(0,0,0) scale(1.02);
-  filter: brightness(.96) contrast(1.02);
+  transform: scale(1.02);
+  transition: .8s ease;
 }
+.card:hover .card__media img { transform: scale(1.12) translateY(-3%); }
 
-.card:hover .card__media img {
-  transform: translate3d(0,-2%,0) scale(1.09);
-  filter: brightness(1.08) contrast(1.04);
-}
-
-.card::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 4px;
-  width: 100%;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  opacity: .85;
-  transition: opacity 0.4s ease;
-}
-
-.card:hover::after { opacity: 1; }
-
+/* animação flutuante */
 @keyframes cardFloat {
   0%,100% { transform: translateY(0); }
   50% { transform: translateY(-4px); }
 }
 
-@media (prefers-reduced-motion: reduce){ .card{ animation: none !important; } }
-
+/* =========================================================
+   Responsividade
+========================================================= */
 section { padding: 3rem 1rem; }
 .hidden { display: none !important; }
 
 @media (max-width: 1024px) { section { padding: 2.5rem 1rem; } }
+
 @media (max-width: 768px) {
   h1 { font-size: clamp(1.6rem, 6vw, 2.2rem); }
   h2 { font-size: clamp(1.4rem, 4.5vw, 1.9rem); }

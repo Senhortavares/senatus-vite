@@ -15,6 +15,10 @@
   --shadow: 0 4px 12px rgba(0,0,0,0.25);
   --container-width: 1200px;
   --transition: all 0.3s ease-in-out;
+
+  /* Altura do menu (ajusto quando você mandar o navbar.css) */
+  --nav-height: 78px;
+  --nav-gap: 12px;
 }
 
 /* ==============================
@@ -28,14 +32,18 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
-  margin: 0;
   font-family: var(--font-body);
   background: var(--color-bg);
   color: var(--color-text);
   line-height: 1.6;
+
+  /* evita que o conteúdo fique atrás do menu fixo */
+  padding-top: calc(var(--nav-height) + var(--nav-gap));
+  overflow-x: hidden;
 }
 
 /* ==============================
@@ -51,7 +59,6 @@ h1, h2, h3, h4 {
 p {
   margin-bottom: 1rem;
   color: var(--color-text);
-  font-size: 1rem;
 }
 
 /* ==============================
@@ -66,3 +73,71 @@ a:hover {
   color: var(--color-secondary);
 }
 
+/* ==============================
+   Estrutura Base
+============================== */
+main {
+  display: block;
+  min-height: 100dvh;
+}
+
+.container, .content, .page, .wrapper {
+  width: min(100% - 2rem, var(--container-width));
+  margin-inline: auto;
+}
+
+/* ==============================
+   Header / Navbar (compatível com menu fixo)
+============================== */
+header, .navbar, #menuTop {
+  width: 100%;
+  background: var(--color-bg-alt);
+  z-index: 9999;
+  box-shadow: var(--shadow);
+}
+
+/* ==============================
+   Formulários
+============================== */
+input, select, textarea, button {
+  font: inherit;
+}
+
+input, select, textarea {
+  width: 100%;
+  background: #0c213b;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: .9rem 1rem;
+  transition: var(--transition);
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(209,147,1,0.2);
+}
+
+button, .btn {
+  padding: .9rem 1.2rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  background: linear-gradient(180deg, #e4b640, #a87605);
+  color: #1b1300;
+  transition: var(--transition);
+}
+
+button:hover, .btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+/* ==============================
+   Responsividade
+============================== */
+@media (max-width: 640px) {
+  :root {
+    --nav-height: 68px;
+  }
+}

@@ -24,12 +24,12 @@ export const links = [
 
 // Cards dos líderes
 export const programs = [
-  { id: 1, icon: <FaChessKing />, title: 'LÍDER SUPREMO: Anderson',  info: 'Líder supremo do Senatus!', path: '/programs/111', imagem: '/lider1.png' },
-  { id: 2, icon: <FaCrown />,     title: 'GRÃO-MESTRE: Arnaud',      info: 'Mestre do Senatus!', path: '/programs/222', imagem: '/gra2.png' },
-  { id: 3, icon: <GiOldKing />,   title: 'ADMINISTRADORES: Sun',     info: 'Administradora da Senatus', path: '/programs/333', imagem: '/adm.png' },
-  { id: 4, icon: <GiOldKing />,   title: 'ENGENHEIRO: Warlen',       info: 'Engenheiro do Senatus', path: '/programs/444', imagem: '/eng1.png' },
-  { id: 5, icon: <GiLockPicking />, title: 'CONSELHEIROS',           info: 'Líder dos Cívis do Senatus', path: '/programs/555', imagem: '/liciv.png' },
-  { id: 6, icon: <BsPersonWalking />, title: 'CIVIL',                info: 'Cívis do Senatus', path: '/programs/666', imagem: '/civil.png' },
+  { id: 1, icon: <FaChessKing />, title: 'LÍDER SUPREMO: Anderson',  info: 'Líder supremo do Senatus!', path: '/programs/111', imagem: '/lider1.svg' },
+  { id: 2, icon: <FaCrown />,     title: 'GRÃO-MESTRE: Arnaud',      info: 'Mestre do Senatus!', path: '/programs/222', imagem: '/gra2.svg' },
+  { id: 3, icon: <GiOldKing />,   title: 'ADMINISTRADORES: Sun',     info: 'Administradora da Senatus', path: '/programs/333', imagem: '/adm.svg' },
+  { id: 4, icon: <GiOldKing />,   title: 'ENGENHEIRO: Warlen',       info: 'Engenheiro do Senatus', path: '/programs/444', imagem: '/eng1.svg' },
+  { id: 5, icon: <GiLockPicking />, title: 'CONSELHEIROS',           info: 'Líder dos Cívis do Senatus', path: '/programs/555', imagem: '/liciv.svg' },
+  { id: 6, icon: <BsPersonWalking />, title: 'CIVIL',                info: 'Cívis do Senatus', path: '/programs/666', imagem: '/civil 1.svg' },
 ];
 
 // Filosofias
@@ -49,10 +49,10 @@ export const faqs = [
 
 // Depoimentos e noticias que cada lider vai passar 
 export const testimonials = [
-  { id: 1, name: 'Anderson', job: 'Líder Supremo', quote: 'Unidade, justiça e luz.', avatar: '/lider1.png' },
-  { id: 2, name: 'Arnaud', job: 'Grão-Mestre', quote: 'Ordem, respeito e fraternidade.', avatar: '/gra2.png' },
-  { id: 3, name: 'Sun', job: 'Administrador', quote: 'Ordem, respeito e fraternidade.', avatar: '/adm.png' },
-  { id: 4, name: 'Warlen', job: 'Engenheiro', quote: 'Ordem, respeito e fraternidade.', avatar: '/eng1.png' },
+  { id: 1, name: 'Anderson', job: 'Líder Supremo', quote: 'Unidade, justiça e luz.', avatar: '/lider1.svg' },
+  { id: 2, name: 'Arnaud', job: 'Grão-Mestre', quote: 'Ordem, respeito e fraternidade.', avatar: '/gra2.svg' },
+  { id: 3, name: 'Sun', job: 'Administrador', quote: 'Ordem, respeito e fraternidade.', avatar: '/adm.svg' },
+  { id: 4, name: 'Warlen', job: 'Engenheiro', quote: 'Ordem, respeito e fraternidade.', avatar: '/eng1.svg' },
 ];
 
 

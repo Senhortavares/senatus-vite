@@ -1,14 +1,22 @@
+/* =========================================================
+   GALLERY PAGE – compatível com o menu fixo (usa --nav-height)
+   Não conflita com outros estilos do site
+========================================================= */
+
 .gallery {
-  padding: 6rem 1rem 2rem; /* 6rem em cima para "empurrar" abaixo do menu */
+  /* empurra o conteúdo exatamente pela altura do menu */
+  padding: calc(var(--nav-height, 78px) + 1.5rem) 1rem 2rem;
+
   text-align: center;
   background: linear-gradient(180deg, #0b1220, #0f1a2d);
   min-height: 100vh;
+
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-
+/* Título */
 .gallery__title {
   font-size: clamp(1.4rem, 5vw, 2rem);
   font-weight: 700;
@@ -18,22 +26,25 @@
   letter-spacing: 1.5px;
 }
 
-/* Cards principais */
+/* Container dos cards */
 .gallery__images {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
   width: 100%;
-  max-width: 400px; /* limite para mobile */
+  max-width: 400px;
   margin: 0 auto 2rem;
 }
 
+/* Card */
 .gallery__card {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 14px;
   padding: 1rem;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+
   animation: float 4s ease-in-out infinite;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,21 +64,25 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
 }
 
-/* Botões menores e responsivos */
+/* Botão de download */
 .download-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+
   background: linear-gradient(135deg, #ffd700, #ffb700);
   color: #111;
+
   padding: 0.6rem 1rem;
   border-radius: 20px;
   font-weight: 600;
   font-size: 0.85rem;
   text-decoration: none;
+
   transition: transform 0.2s ease, background 0.2s ease;
-  width: 85%;          /* ocupa menos no celular */
+
+  width: 85%;
   max-width: 260px;
 }
 
@@ -76,7 +91,7 @@
   transform: scale(1.05);
 }
 
-/* Instruções */
+/* Área com instruções */
 .gallery__steps {
   color: #ddd;
   text-align: left;
@@ -103,7 +118,18 @@
   line-height: 1.4;
 }
 
-/* Responsividade extra */
+.fade-card {
+  opacity: 0;
+  transform: translateY(35px) scale(0.96);
+  transition: 0.6s ease;
+}
+
+.show-card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Responsividade */
 @media (min-width: 768px) {
   .gallery__images {
     flex-direction: row;

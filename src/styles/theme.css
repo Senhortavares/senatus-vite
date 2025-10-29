@@ -1,87 +1,103 @@
-/* ==============================
-   Tipos clássicos: títulos com Cinzel, texto com Merriweather
-============================== */
+/* =========================================================
+   SENATUS UI — Tema dourado/azul (cards, botões e base)
+   • Seguro para usar com index.css (sem sobrescrever variáveis globais)
+   • Respeita menu fixo via --nav-height (com fallback de 78px)
+========================================================= */
+
+/* Import das fontes usadas somente neste tema */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Merriweather:wght@400;700&display=swap');
 
+/* ==============================
+   Variáveis do TEMA (isoladas)
+============================== */
 :root {
-  /* Paleta SENATUS (dourado + azul noite) */
-  --color-bg: #091423;
-  --color-bg-alt: #0d1d33;
-  --color-panel: #0f223d;
-  --color-text: #f1f2f4;
-  --color-muted: #c9cdd6;
+  --senatus-color-bg: #091423;
+  --senatus-color-bg-alt: #0d1d33;
+  --senatus-color-panel: #0f223d;
+  --senatus-color-text: #f1f2f4;
+  --senatus-color-muted: #c9cdd6;
 
-  --gold: #c9a227;
-  --gold-2: #e0c15a;
-  --blue: #173a6a;
-  --blue-2: #1d4ed8;
+  --senatus-gold: #c9a227;
+  --senatus-gold-2: #e0c15a;
+  --senatus-blue: #173a6a;
+  --senatus-blue-2: #1d4ed8;
 
-  --success: #22c55e;
-  --danger: #e53935;
+  --senatus-success: #22c55e;
+  --senatus-danger: #e53935;
 
-  --radius: 22px; /* Mais redondo */
-  --shadow: 0 10px 30px rgba(0,0,0,.35);
-  --shadow-soft: 0 6px 18px rgba(0,0,0,.25);
-  --container: 1200px;
-  --transition: all .3s ease;
-  --col-min: 220px; /* Cards menores */
+  --senatus-radius: 22px;
+  --senatus-shadow: 0 10px 30px rgba(0,0,0,.35);
+  --senatus-shadow-soft: 0 6px 18px rgba(0,0,0,.25);
+  --senatus-container: 1200px;
+  --senatus-transition: all .3s ease;
+  --senatus-col-min: 220px;
 }
 
 /* ==============================
-   Reset básico
+   Base (não sobrescreve o index.css de forma agressiva)
 ============================== */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 
 html, body { height: 100%; }
 
 body {
-  font-family: 'Merriweather', serif;
-  color: var(--color-text);
+  /* garante que nada fique atrás do menu fixo.
+     Usa --nav-height do index.css; se não existir, cai para 78px */
+  padding-top: calc(var(--nav-height, 78px) + 12px);
+
+  font-family: 'Merriweather', serif; /* mantém a estética do tema */
+  color: var(--senatus-color-text);
   background:
     radial-gradient(1200px 600px at 0% 0%, rgba(255,255,255,.02), transparent 60%),
-    linear-gradient(180deg, #071020, #091423 30%, #0a1830);
+    linear-gradient(180deg, #071020, var(--senatus-color-bg) 30%, #0a1830);
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 img { max-width: 100%; display: block; height: auto; }
 
-a { color: var(--gold); text-decoration: none; transition: var(--transition); }
-a:hover { color: var(--gold-2); }
+a {
+  color: var(--senatus-gold);
+  text-decoration: none;
+  transition: var(--senatus-transition);
+}
+a:hover { color: var(--senatus-gold-2); }
 
 h1, h2, h3, h4 {
   font-family: 'Cinzel', serif;
-  color: var(--gold);
+  color: var(--senatus-gold);
   margin: 0 0 .6rem;
   line-height: 1.15;
 }
 
 .container {
   width: 100%;
-  max-width: var(--container);
+  max-width: var(--senatus-container);
   margin: 0 auto;
   padding: 0 1rem;
 }
 
-.btn {
+/* ==============================
+   Botões (classe específica do tema)
+============================== */
+.btn-senatus {
   display: inline-block;
   padding: .85rem 1.4rem;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--gold), var(--gold-2));
+  background: linear-gradient(135deg, var(--senatus-gold), var(--senatus-gold-2));
   color: #131313;
   font-weight: 700;
   letter-spacing: .3px;
-  box-shadow: var(--shadow-soft);
-  transition: var(--transition);
+  box-shadow: var(--senatus-shadow-soft);
+  transition: var(--senatus-transition);
   border: none;
   position: relative;
   overflow: hidden;
 }
+.btn-senatus:hover { transform: translateY(-2px) scale(1.03); filter: brightness(1.07); }
+.btn-senatus:active { transform: scale(0.97); }
+.btn-senatus.lg { padding: 1rem 1.8rem; font-size: 1.05rem; }
 
-.btn::after {
+.btn-senatus::after {
   content: "";
   position: absolute;
   top: -50%;
@@ -92,18 +108,14 @@ h1, h2, h3, h4 {
   transform: rotate(25deg) translate(-200%, 0);
   transition: transform 0.6s ease;
 }
-
-.btn:hover::after { transform: rotate(25deg) translate(200%, 0); }
-.btn:hover { transform: translateY(-2px) scale(1.03); filter: brightness(1.07); }
-.btn:active { transform: scale(0.97); }
-.btn.lg { padding: 1rem 1.8rem; font-size: 1.05rem; }
+.btn-senatus:hover::after { transform: rotate(25deg) translate(200%, 0); }
 
 /* ==============================
-   Cards
+   Cards (mantive as classes que você já usa)
 ============================== */
 .cards-grid{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(var(--col-min), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(var(--senatus-col-min), 1fr));
   gap: 22px;
   padding: 12px;
 }
@@ -111,8 +123,8 @@ h1, h2, h3, h4 {
 .card {
   background: linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
   border: 1px solid rgba(255,255,255,0.08);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-soft);
+  border-radius: var(--senatus-radius);
+  box-shadow: var(--senatus-shadow-soft);
   backdrop-filter: blur(8px);
   padding: 1.2rem;
   transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
@@ -128,7 +140,14 @@ h1, h2, h3, h4 {
   left: -75%;
   width: 50%;
   height: 100%;
-  background: conic-gradient(from 180deg at 50% 50%, transparent 0deg, rgba(212,175,55,.12) 70deg, rgba(212,175,55,.45) 180deg, rgba(212,175,55,.12) 290deg, transparent 360deg);
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    transparent 0deg,
+    rgba(212,175,55,.12) 70deg,
+    rgba(212,175,55,.45) 180deg,
+    rgba(212,175,55,.12) 290deg,
+    transparent 360deg
+  );
   transform: skewX(-25deg);
   transition: left 0.8s ease;
   opacity: .85;
@@ -142,7 +161,7 @@ h1, h2, h3, h4 {
 }
 
 .card h3 {
-  color: var(--gold);
+  color: var(--senatus-gold);
   font-family: 'Cinzel', serif;
   font-weight: 700;
   font-size: 1rem;
@@ -153,15 +172,15 @@ h1, h2, h3, h4 {
 }
 
 .card p {
-  color: var(--color-muted);
+  color: var(--senatus-color-muted);
   font-size: .9rem;
 }
 
-.card:hover h3 { color: var(--gold-2); }
+.card:hover h3 { color: var(--senatus-gold-2); }
 
 .card__media {
   margin: 0 .6rem 0.9rem;
-  border-radius: calc(var(--radius) - 6px);
+  border-radius: calc(var(--senatus-radius) - 6px);
   overflow: hidden;
   position: relative;
 }
@@ -188,11 +207,10 @@ h1, h2, h3, h4 {
   left: 0;
   height: 4px;
   width: 100%;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  background: linear-gradient(90deg, transparent, var(--senatus-gold), transparent);
   opacity: .85;
   transition: opacity 0.4s ease;
 }
-
 .card:hover::after { opacity: 1; }
 
 @keyframes cardFloat {
@@ -202,6 +220,9 @@ h1, h2, h3, h4 {
 
 @media (prefers-reduced-motion: reduce){ .card{ animation: none !important; } }
 
+/* ==============================
+   Seções e responsividade
+============================== */
 section { padding: 3rem 1rem; }
 .hidden { display: none !important; }
 
@@ -209,6 +230,6 @@ section { padding: 3rem 1rem; }
 @media (max-width: 768px) {
   h1 { font-size: clamp(1.6rem, 6vw, 2.2rem); }
   h2 { font-size: clamp(1.4rem, 4.5vw, 1.9rem); }
-  .btn.lg { width: 100%; text-align: center; }
+  .btn-senatus.lg { width: 100%; text-align: center; }
   .card { padding: 1rem; }
 }
